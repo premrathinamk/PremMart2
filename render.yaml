@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: premmart
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: DB_TYPE
+        value: h2
+      - key: DB_URL
+        value: "jdbc:h2:mem:premmart;DB_CLOSE_DELAY=-1"
+      - key: AI_CHATBOT_PROVIDER
+        value: gemini
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: "gemini-3.1-flash-lite"
